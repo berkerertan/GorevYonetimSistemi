@@ -6,4 +6,17 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GorevYonetimSistemi.Business\GorevYonetimSistemi.Business.csproj" />
+    <ProjectReference Include="..\GorevYonetimSistemi.Data\GorevYonetimSistemi.Data.csproj" />
+    <ProjectReference Include="..\GorevYonetimSistemi.Entities\GorevYonetimSistemi.Entities.csproj" />
+  </ItemGroup>
+
 </Project>

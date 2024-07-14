@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -41,6 +42,11 @@ namespace GorevYonetimSistemi.Data.Repositories
         public void Delete(T entity)
         {
             _context.Remove(entity);
+        }
+
+        public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate)
+        {
+            return null;//await _context.Where(predicate).ToListAsync();
         }
 
         public async Task SaveChangesAsync()

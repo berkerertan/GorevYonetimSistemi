@@ -23,7 +23,10 @@ namespace GorevYonetimSistemi.Data
                 GetConnectionString("ToDoListCase")));
 
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<ITaskRepository, TaskRepository>();
+            services.AddScoped<IToDoTaskRepository, ToDoTaskRepository>();
+
+
+            //services.AddAutoMapper(typeof(MappingProfile));
 
             return services;
         }

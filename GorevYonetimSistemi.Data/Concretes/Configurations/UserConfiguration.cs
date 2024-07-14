@@ -14,12 +14,12 @@ namespace GorevYonetimSistemi.Data.Concretes.Configurations
 
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.ToTable("Task");
+            builder.ToTable("Users").HasKey(x => x.Id);
             builder.Property(x => x.Username).HasColumnName("Username").IsRequired();
             builder.Property(x => x.Password).HasColumnName("Password").IsRequired();
             builder.Property(x => x.RoleId).HasColumnName("RoleId").IsRequired();
 
-            builder.HasMany(x => x.Tasks);
+            builder.HasMany(x => x.ToDoTasks);
         }
     }
 }

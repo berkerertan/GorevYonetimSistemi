@@ -13,7 +13,7 @@ namespace GorevYonetimSistemi.Data.Concretes.Contexts
     public class BaseDbContext : DbContext
     {
         protected IConfiguration Configuration { get; set; }
-        public DbSet<Entities.Concretes.Task> Tasks { get; set; }
+        public DbSet<ToDoTask> ToDoTasks { get; set; }
         public DbSet<User> Users { get; set; }
 
         public BaseDbContext(DbContextOptions<BaseDbContext> options,IConfiguration configuration)
@@ -26,7 +26,7 @@ namespace GorevYonetimSistemi.Data.Concretes.Contexts
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             modelBuilder.Entity<User>()
-                .HasMany(u => u.Tasks)
+                .HasMany(u => u.ToDoTasks)
                 .WithOne(t => t.User)
                 .HasForeignKey(t => t.UserId);
 

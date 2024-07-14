@@ -1,3 +1,6 @@
+using GorevYonetimSistemi.Data;
+using GorevYonetimSistemi.Business;
+
 namespace GorevYonetimSistemi.Web
 {
     public class Program
@@ -9,6 +12,7 @@ namespace GorevYonetimSistemi.Web
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddDataAccessServices(builder.Configuration);
+            builder.Services.AddBusinessServices();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

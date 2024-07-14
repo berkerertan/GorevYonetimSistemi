@@ -7,8 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Abstracts\" />
-    <Folder Include="Concretes\" />
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GorevYonetimSistemi.Data\GorevYonetimSistemi.Data.csproj" />
+    <ProjectReference Include="..\GorevYonetimSistemi.Entities\GorevYonetimSistemi.Entities.csproj" />
   </ItemGroup>
 
 </Project>

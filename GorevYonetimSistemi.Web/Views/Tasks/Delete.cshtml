@@ -1,0 +1,18 @@
+﻿@model GorevYonetimSistemi.Entities.Concretes.ToDoTask
+
+<h1>Delete Task</h1>
+
+<div>
+    <h4>Are you sure you want to delete this?</h4>
+    <div>
+        <h5>Title: @Model.Title</h5>
+        <h5>Description: @Model.Description</h5>
+        <h5>Creation Date: @Model.CreationDate.ToString("yyyy-MM-dd")</h5>
+        <h5>Status: @Model.Status</h5>
+    </div>
+    <form asp-action="DeleteConfirmed">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+    <a asp-action="Index">Back to List</a>
+</div>

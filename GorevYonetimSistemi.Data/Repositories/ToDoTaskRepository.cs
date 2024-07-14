@@ -1,5 +1,6 @@
 ﻿using GorevYonetimSistemi.Data.Abstracts;
 using GorevYonetimSistemi.Data.Concretes.Contexts;
+using GorevYonetimSistemi.Entities.Concretes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace GorevYonetimSistemi.Data.Repositories
 {
-    public class TaskRepository : AsyncRepository<Entities.Concretes.Task>, ITaskRepository
+    public class ToDoTaskRepository : AsyncRepository<ToDoTask>, IToDoTaskRepository
     {
-        public TaskRepository(BaseDbContext context) : base(context)
+        public ToDoTaskRepository(BaseDbContext context) : base(context)
         {
         }
     }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GorevYonetimSistemi.Entities.Concretes
 {
-    public class Task : BaseEntity<int>
+    public class ToDoTask : BaseEntity<int>
     {
         public string Title { get; set; }
         public string Description { get; set; }
