@@ -1,15 +1,28 @@
-﻿@model IEnumerable<GorevYonetimSistemi.Business.DTOs.ToDoTaskDto>
+﻿@model IEnumerable<GorevYonetimSistemi.Entities.Concretes.ToDoTask> // ToDoTask modeline göre view model
 
-<h1>Tasks</h1>
+@{
+    ViewBag.Title = "Task List";
+}
+
+<h2>Task List</h2>
+
+<div class="mb-3">
+    @Html.ActionLink("Create New Task", "Create", "Tasks")
+</div>
+
+@using (Html.BeginForm("FilterByStatus", "Tasks", FormMethod.Post))
+{
+    @Html.DropDownList("selectedStatus", ViewBag.StatusList as SelectList, new { onchange = "this.form.submit();" })
+}
 
 <table class="table">
     <thead>
         <tr>
-            <th>Title</th>
+            <th>Başlık</th>
             <th>Description</th>
-            <th>Creation Date</th>
+            <th>Creation Date(day/mounth/year)</th>
             <th>Status</th>
-            <th>Actions</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -18,16 +31,14 @@
             <tr>
                 <td>@task.Title</td>
                 <td>@task.Description</td>
-                <td>@task.CreationDate.ToString("yyyy-MM-dd")</td>
+                <td>@task.CreationDate.ToString("dd-MM-yyyy")</td>
                 <td>@task.Status</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@task.Id">Edit</a> |
-                    <a asp-action="Delete" asp-route-id="@task.Id">Delete</a>
+                    @Html.ActionLink("Edit", "Edit", new { id = task.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = task.Id })
                 </td>
             </tr>
         }
     </tbody>
 </table>
-
-<a asp-action="Create" class="btn btn-primary">Create New Task</a>
 

@@ -11,7 +11,7 @@ namespace GorevYonetimSistemi.Entities.Concretes
     {
         public string Title { get; set; }
         public string Description { get; set; }
-        public TaskStatus Status { get; set; }
+        public string Status { get; set; } = "new";
         public Guid UserId { get; set; }
         public User User { get; set; }
     }

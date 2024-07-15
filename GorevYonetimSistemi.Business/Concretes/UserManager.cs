@@ -46,6 +46,7 @@ namespace GorevYonetimSistemi.Business.Concretes
         public async Task<User?> GetAsync(Expression<Func<User, bool>> predicate, bool enableTracking = true, CancellationToken cancellationToken = default)
         {
             return await _userRepository.GetAsync(predicate, enableTracking, cancellationToken);
+
         }
 
         public async Task<User> GetByIdAsync(int id)

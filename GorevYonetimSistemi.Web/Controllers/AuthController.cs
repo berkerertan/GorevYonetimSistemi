@@ -36,16 +36,15 @@ namespace GorevYonetimSistemi.Web.Controllers
                 return View(registerDto);
             }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Auth");
         }
 
-        [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
 
-        [HttpPost]
+        [HttpPost("login")]
         public async Task<IActionResult> Login(LoginDto loginDto)
         {
             if (!ModelState.IsValid)
@@ -57,15 +56,18 @@ namespace GorevYonetimSistemi.Web.Controllers
 
             if (accessToken == null)
             {
-                // Handle login failure
-                ModelState.AddModelError("", "Geçersiz KullanıcıAdı veya Şifre");
-                return View(loginDto);
+                ModelState.AddModelError(string.Empty, "Username or password is incorrect");
+                return View();
             }
 
-            // Save the token to the session or cookies
-            HttpContext.Session.SetString("JWToken", accessToken.Token);
+            // Store token in HTTP-only cookie
+            Response.Cookies.Append("token", accessToken.Token, new CookieOptions
+            {
+                HttpOnly = true
+            });
 
-            return RedirectToAction("Index", "Home");
+            // Redirect to Tasks/Index
+            return RedirectToAction("Index", "Tasks");
         }
     }
 }

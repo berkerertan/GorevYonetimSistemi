@@ -9,22 +9,22 @@ namespace GorevYonetimSistemi.Core.Utilities.Security.Hashing
 {
     public class HashingHelper
     {
-        public static byte[] CreatePasswordHash(string password)
+        public static void CreatePasswordHash(string password, out byte[] passwordHash)
         {
-            using (var hmac = new HMACSHA512())
+            using (var hmac = new System.Security.Cryptography.HMACSHA512())
             {
-                return hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+                passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
             }
         }
 
         public static bool VerifyPasswordHash(string password, byte[] passwordHash)
         {
-            using (var hmac = new HMACSHA512())
+            using (var hmac = new System.Security.Cryptography.HMACSHA512())
             {
-                var computeHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
-                for (int i = 0; i < computeHash.Length; i++)
+                var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+                for (int i = 0; i < computedHash.Length; i++)
                 {
-                    if (computeHash[i] != passwordHash[i])
+                    if (computedHash[i] != passwordHash[i])
                     {
                         return false;
                     }

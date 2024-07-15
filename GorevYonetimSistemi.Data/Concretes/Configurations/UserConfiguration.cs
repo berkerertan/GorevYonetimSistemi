@@ -17,7 +17,7 @@ namespace GorevYonetimSistemi.Data.Concretes.Configurations
             builder.ToTable("Users").HasKey(x => x.Id);
             builder.Property(x => x.Username).HasColumnName("Username").IsRequired();
             builder.Property(x => x.Password).HasColumnName("Password").IsRequired();
-            builder.Property(x => x.RoleId).HasColumnName("RoleId").IsRequired();
+            builder.Property(x => x.RoleId).HasColumnName("RoleId").IsRequired(false);
 
             builder.HasMany(x => x.ToDoTasks);
         }

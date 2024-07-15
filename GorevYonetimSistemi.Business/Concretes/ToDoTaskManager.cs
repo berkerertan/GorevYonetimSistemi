@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Azure.Core;
 using GorevYonetimSistemi.Business.Abstracts;
 using GorevYonetimSistemi.Business.DTOs;
 using GorevYonetimSistemi.Data.Abstracts;
@@ -20,7 +21,7 @@ namespace GorevYonetimSistemi.Business.Concretes
             _toDoTaskRepository = toDoTaskRepository;
             _mapper = mapper;
         }
-        public async Task AddToDoTaskAsync(ToDoTaskDto taskDto)
+        public async Task AddAsync(ToDoTask taskDto)
         {
             var task = _mapper.Map<ToDoTask>(taskDto);
             await _toDoTaskRepository.AddAsync(task);
@@ -34,25 +35,25 @@ namespace GorevYonetimSistemi.Business.Concretes
             await _toDoTaskRepository.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<ToDoTaskDto>> GetAllToDoTasksAsync()
+        public async Task<IEnumerable<ToDoTask>> GetAllAsync()
         {
             var tasks = await _toDoTaskRepository.GetAllAsync();
-            return _mapper.Map<IEnumerable<ToDoTaskDto>>(tasks);
+            return _mapper.Map<IEnumerable<ToDoTask>>(tasks);
         }
 
-        public async Task<ToDoTaskDto> GetToDoTaskByIdAsync(int id)
+        public async Task<ToDoTask> GetByIdAsync(int id)
         {
             var task = await _toDoTaskRepository.GetByIdAsync(id);
-            return _mapper.Map<ToDoTaskDto>(task);
+            return _mapper.Map<ToDoTask>(task);
         }
 
-        public async Task<IEnumerable<ToDoTaskDto>> GetToDoTasksByStatusAsync(string status)
+        public async Task<IEnumerable<ToDoTask>> GetByStatusAsync(string status)
         {
-            var tasks = status;//await _toDoTaskRepository.FindAsync(t => t.Status == status);
-            return _mapper.Map<IEnumerable<ToDoTaskDto>>(tasks);
+            var tasks = await _toDoTaskRepository.GetAllAsync(predicate: u => u.Status == status);
+            return _mapper.Map<IEnumerable<ToDoTask>>(tasks);
         }
 
-        public async Task UpdateToDoTaskAsync(ToDoTaskDto taskDto)
+        public async Task UpdateAsync(ToDoTask taskDto)
         {
             var task = _mapper.Map<ToDoTask>(taskDto);
             _toDoTaskRepository.Update(task);

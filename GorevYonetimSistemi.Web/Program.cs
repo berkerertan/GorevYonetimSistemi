@@ -3,6 +3,8 @@ using GorevYonetimSistemi.Business;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using GorevYonetimSistemi.Core.Utilities.Security.JWT;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace GorevYonetimSistemi.Web
 {
@@ -12,25 +14,32 @@ namespace GorevYonetimSistemi.Web
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddDataAccessServices(builder.Configuration);
             builder.Services.AddBusinessServices();
 
-            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            var tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<TokenOptions>();
+            var key = Encoding.ASCII.GetBytes(tokenOptions.SecurityKey);
+
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
             .AddJwtBearer(options =>
             {
+                options.RequireHttpsMetadata = false;
+                options.SaveToken = true;
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    ValidIssuer = builder.Configuration["TokenOptions:Issuer"],
-                    ValidAudience = builder.Configuration["TokenOptions:Audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["TokenOptions:SecurityKey"]))
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = true
                 };
             });
+
 
             var app = builder.Build();
 
@@ -47,6 +56,7 @@ namespace GorevYonetimSistemi.Web
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(

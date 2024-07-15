@@ -24,8 +24,5 @@ namespace GorevYonetimSistemi.Business
 
             return services;
         }
-
-
-
     }
 }

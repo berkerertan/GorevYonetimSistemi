@@ -15,6 +15,7 @@ namespace GorevYonetimSistemi.Data.Abstracts
             bool enableTracking = true,
             CancellationToken cancellationToken = default);
         Task<T> GetByIdAsync(int id);
+        Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> predicate = null, bool enableTracking = true, CancellationToken cancellationToken = default);
         Task<IEnumerable<T>> GetAllAsync();
         Task AddAsync(T entity);
         void Update(T entity);

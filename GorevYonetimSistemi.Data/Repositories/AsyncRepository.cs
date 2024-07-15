@@ -72,6 +72,23 @@ namespace GorevYonetimSistemi.Data.Repositories
         {
             await _context.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> predicate = null, bool enableTracking = true, CancellationToken cancellationToken = default)
+        {
+            IQueryable<T> query = _context.Set<T>();
+
+            if (!enableTracking)
+            {
+                query = query.AsNoTracking();
+            }
+
+            if (predicate != null)
+            {
+                query = query.Where(predicate);
+            }
+
+            return await query.ToListAsync(cancellationToken);
+        }
     }
 
 }

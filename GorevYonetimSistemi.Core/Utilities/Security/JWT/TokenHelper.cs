@@ -21,7 +21,13 @@ namespace GorevYonetimSistemi.Core.Utilities.Security.JWT
         public TokenHelper(IConfiguration configuration)
         {
             Configuration = configuration;
-            //_tokenOptions = Configuration.GetSection("TokenOptions")
+            _tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
+
+            //  missing or invalid hatası için debug
+            if (_tokenOptions == null)
+            {
+                throw new ArgumentNullException(nameof(_tokenOptions), "TokenOptions configuration is missing or invalid");
+            }
         }
 
         public AccessToken CreateToken(User user)
@@ -34,8 +40,7 @@ namespace GorevYonetimSistemi.Core.Utilities.Security.JWT
             var token = jwtSecurityTokenHandler.WriteToken(jwt);
             return new AccessToken
             {
-                Token = token,
-                Expiration = _expiration,
+                Token = token
             };
         }
 
@@ -46,7 +51,8 @@ namespace GorevYonetimSistemi.Core.Utilities.Security.JWT
                 audience: tokenOptions.Audience,
                 expires: _expiration,
                 notBefore: DateTime.Now,
-                signingCredentials: signingCredentials
+                signingCredentials: signingCredentials,
+                claims: SetClaims(user)
             );
             return jwt;
         }
@@ -54,13 +60,12 @@ namespace GorevYonetimSistemi.Core.Utilities.Security.JWT
         private IEnumerable<Claim> SetClaims(User user)
         {
             var claims = new List<Claim>
-            {
-                new Claim(JwtRegisteredClaimNames.Sub, user.Username),
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
-            };
+        {
+            new Claim(JwtRegisteredClaimNames.Sub, user.Username),
+            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
+        };
 
             return claims;
         }
-
     }
 }
