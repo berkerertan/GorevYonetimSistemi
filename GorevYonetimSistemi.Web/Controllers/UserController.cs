@@ -1,5 +1,6 @@
 ﻿using GorevYonetimSistemi.Business.Abstracts;
 using GorevYonetimSistemi.Business.DTOs;
+using GorevYonetimSistemi.Entities.Concretes;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GorevYonetimSistemi.Web.Controllers
@@ -13,7 +14,7 @@ namespace GorevYonetimSistemi.Web.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var users = await _userService.GetAllUsersAsync();
+            var users = await _userService.GetAllAsync();
             return View();
         }
 
@@ -23,11 +24,11 @@ namespace GorevYonetimSistemi.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(UserDto user)
+        public async Task<IActionResult> Create(User user)
         {
             if (ModelState.IsValid)
             {
-                await _userService.AddUserAsync(user);
+                await _userService.AddAsync(user);
                 return RedirectToAction(nameof(Index));
             }
             return View(user);
@@ -35,7 +36,7 @@ namespace GorevYonetimSistemi.Web.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
-            var user = await _userService.GetUserByIdAsync(id);
+            var user = await _userService.GetByIdAsync(id);
             if (user == null)
             {
                 return NotFound();
@@ -44,11 +45,11 @@ namespace GorevYonetimSistemi.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(UserDto user)
+        public async Task<IActionResult> Edit(User user)
         {
             if (ModelState.IsValid)
             {
-                await _userService.UpdateUserAsync(user);
+                await _userService.UpdateAsync(user);
                 return RedirectToAction(nameof(Index));
             }
             return View(user);
@@ -56,7 +57,7 @@ namespace GorevYonetimSistemi.Web.Controllers
 
         public async Task<IActionResult> Delete(int id)
         {
-            var user = await _userService.GetUserByIdAsync(id);
+            var user = await _userService.GetByIdAsync(id);
             if (user == null)
             {
                 return NotFound();
@@ -67,7 +68,7 @@ namespace GorevYonetimSistemi.Web.Controllers
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            await _userService.DeleteUserAsync(id);
+            await _userService.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
         }
     }

@@ -27,7 +27,7 @@ namespace GorevYonetimSistemi.Business.Concretes
             await _toDoTaskRepository.SaveChangesAsync();
         }
 
-        public async Task DeleteToDoTaskAsync(int id)
+        public async Task DeleteAsync(int id)
         {
             var task = await _toDoTaskRepository.GetByIdAsync(id);
             _toDoTaskRepository.Delete(task);

@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GorevYonetimSistemi.Data", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GorevYonetimSistemi.Entities", "GorevYonetimSistemi.Entities\GorevYonetimSistemi.Entities.csproj", "{1BE6E9A8-78E8-4CE9-A987-C82DC698DF4D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GorevYonetimSistemi.Core", "GorevYonetimSistemi.Core\GorevYonetimSistemi.Core.csproj", "{4216F36B-F2A2-4201-99FC-23B0403121B5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{1BE6E9A8-78E8-4CE9-A987-C82DC698DF4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1BE6E9A8-78E8-4CE9-A987-C82DC698DF4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1BE6E9A8-78E8-4CE9-A987-C82DC698DF4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4216F36B-F2A2-4201-99FC-23B0403121B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4216F36B-F2A2-4201-99FC-23B0403121B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4216F36B-F2A2-4201-99FC-23B0403121B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4216F36B-F2A2-4201-99FC-23B0403121B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

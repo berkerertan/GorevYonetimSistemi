@@ -15,7 +15,7 @@ namespace GorevYonetimSistemi.Web.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var tasks = await _toDoTaskService.GetAllToDoTasksAsync();
+            var tasks = await _toDoTaskService.GetAllAsync();
             return View(tasks);
         }
 
@@ -69,7 +69,7 @@ namespace GorevYonetimSistemi.Web.Controllers
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            await _toDoTaskService.DeleteToDoTaskAsync(id);
+            await _toDoTaskService.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
         }
     }

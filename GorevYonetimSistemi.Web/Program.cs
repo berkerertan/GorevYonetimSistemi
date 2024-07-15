@@ -1,5 +1,8 @@
 using GorevYonetimSistemi.Data;
 using GorevYonetimSistemi.Business;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace GorevYonetimSistemi.Web
 {
@@ -13,6 +16,22 @@ namespace GorevYonetimSistemi.Web
             builder.Services.AddControllersWithViews();
             builder.Services.AddDataAccessServices(builder.Configuration);
             builder.Services.AddBusinessServices();
+
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = builder.Configuration["TokenOptions:Issuer"],
+                    ValidAudience = builder.Configuration["TokenOptions:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["TokenOptions:SecurityKey"]))
+                };
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

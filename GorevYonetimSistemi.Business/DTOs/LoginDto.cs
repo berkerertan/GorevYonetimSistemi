@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace GorevYonetimSistemi.Business.DTOs
 {
-    internal class LoginDto
+    public class LoginDto
     {
+        public string Username { get; set; }
+        public string Password { get; set; }
     }
 }

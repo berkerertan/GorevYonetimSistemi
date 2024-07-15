@@ -1,4 +1,5 @@
 ﻿using GorevYonetimSistemi.Business.DTOs;
+using GorevYonetimSistemi.Entities.Concretes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,11 @@ namespace GorevYonetimSistemi.Business.Abstracts
 {
     public interface IToDoTaskService
     {
-        Task<IEnumerable<ToDoTaskDto>> GetAllToDoTasksAsync();
-        Task<IEnumerable<ToDoTaskDto>> GetToDoTasksByStatusAsync(string status);
-        Task<ToDoTaskDto> GetToDoTaskByIdAsync(int id);
-        Task AddToDoTaskAsync(ToDoTaskDto taskDto);
-        Task UpdateToDoTaskAsync(ToDoTaskDto taskDto);
-        Task DeleteToDoTaskAsync(int id);
+        Task<IEnumerable<ToDoTask>> GetAllAsync();
+        Task<IEnumerable<ToDoTask>> GetByStatusAsync(string status);
+        Task<ToDoTask> GetByIdAsync(int id);
+        Task AddAsync(ToDoTask taskDto);
+        Task UpdateAsync(ToDoTask taskDto);
+        Task DeleteAsync(int id);
     }
 }

@@ -10,8 +10,8 @@ namespace GorevYonetimSistemi.Entities.Concretes
     public class User : BaseEntity<Guid>
     {
         public string Username { get; set; }
-        public string Password { get; set; }
-        public int RoleId { get; set; }
+        public byte[] Password { get; set; }
+        public int? RoleId { get; set; }
         public ICollection<ToDoTask> ToDoTasks { get; set; }
     }
 }
