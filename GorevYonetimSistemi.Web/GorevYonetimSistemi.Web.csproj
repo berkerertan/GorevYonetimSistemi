@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GorevYonetimSistemi.Business\GorevYonetimSistemi.Business.csproj" />
+    <ProjectReference Include="..\GorevYonetimSistemi.Core\GorevYonetimSistemi.Core.csproj" />
     <ProjectReference Include="..\GorevYonetimSistemi.Data\GorevYonetimSistemi.Data.csproj" />
     <ProjectReference Include="..\GorevYonetimSistemi.Entities\GorevYonetimSistemi.Entities.csproj" />
   </ItemGroup>

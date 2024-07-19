@@ -13,8 +13,8 @@ namespace GorevYonetimSistemi.Business.Abstracts
         Task<IEnumerable<ToDoTask>> GetAllAsync();
         Task<IEnumerable<ToDoTask>> GetByStatusAsync(string status);
         Task<ToDoTask> GetByIdAsync(int id);
-        Task AddAsync(ToDoTask taskDto);
-        Task UpdateAsync(ToDoTask taskDto);
+        Task AddAsync(ToDoTaskDto taskDto);
+        Task UpdateAsync(ToDoTaskDto taskDto);
         Task DeleteAsync(int id);
     }
 }

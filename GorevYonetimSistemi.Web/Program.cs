@@ -4,7 +4,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using GorevYonetimSistemi.Core.Utilities.Security.JWT;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using GorevYonetimSistemi.Core.Utilities.Middleware;
+
 
 namespace GorevYonetimSistemi.Web
 {
@@ -40,6 +41,7 @@ namespace GorevYonetimSistemi.Web
                 };
             });
 
+            
 
             var app = builder.Build();
 
@@ -55,6 +57,8 @@ namespace GorevYonetimSistemi.Web
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseJwtCookieMiddleware();
 
             app.UseAuthentication();
             app.UseAuthorization();

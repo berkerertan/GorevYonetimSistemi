@@ -1,5 +1,7 @@
 ﻿using GorevYonetimSistemi.Business.Abstracts;
 using GorevYonetimSistemi.Business.Concretes;
+using GorevYonetimSistemi.Business.Rules;
+using GorevYonetimSistemi.Core.CrossCuttingConcerns;
 using GorevYonetimSistemi.Core.Utilities.Security.JWT;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -21,6 +23,9 @@ namespace GorevYonetimSistemi.Business
             services.AddScoped<IToDoTaskService, ToDoTaskManager>();
             services.AddScoped<IAuthService, AuthManager>();
             services.AddScoped<ITokenHelper, TokenHelper>();
+            services.AddScoped<ToDoTaskBusinessRules>();
+            services.AddScoped<UserBusinessRules>();
+
 
             return services;
         }
