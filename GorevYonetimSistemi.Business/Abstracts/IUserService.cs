@@ -14,8 +14,8 @@ namespace GorevYonetimSistemi.Business.Abstracts
         Task<IEnumerable<User>> GetAllAsync();
         Task<User> GetByIdAsync(int id);
         Task<User> GetAsync(Expression<Func<User, bool>> predicate, bool enableTracking = true, CancellationToken cancellationToken = default);
-        Task AddAsync(User userDto);
-        Task UpdateAsync(User userDto);
+        Task AddAsync(UserDto userDto);
+        Task UpdateAsync(UserDto userDto);
         Task DeleteAsync(int id);
     }
 }

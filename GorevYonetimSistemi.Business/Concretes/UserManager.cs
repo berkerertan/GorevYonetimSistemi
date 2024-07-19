@@ -23,7 +23,7 @@ namespace GorevYonetimSistemi.Business.Concretes
             _mapper = mapper;
         }
 
-        public async Task AddAsync(User userDto)
+        public async Task AddAsync(UserDto userDto)
         {
             var user = _mapper.Map<User>(userDto);
             await _userRepository.AddAsync(user);
@@ -55,7 +55,7 @@ namespace GorevYonetimSistemi.Business.Concretes
             return _mapper.Map<User>(user);
         }
 
-        public async Task UpdateAsync(User userDto)
+        public async Task UpdateAsync(UserDto userDto)
         {
             var user = _mapper.Map<User>(userDto);
             _userRepository.Update(user);

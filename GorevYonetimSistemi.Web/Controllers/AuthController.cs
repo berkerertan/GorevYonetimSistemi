@@ -31,7 +31,6 @@ namespace GorevYonetimSistemi.Web.Controllers
 
             if (accessToken == null)
             {
-                // Handle registration failure
                 ModelState.AddModelError("", "Kayıt Başarısız");
                 return View(registerDto);
             }
@@ -60,13 +59,11 @@ namespace GorevYonetimSistemi.Web.Controllers
                 return View();
             }
 
-            // Store token in HTTP-only cookie
             Response.Cookies.Append("token", accessToken.Token, new CookieOptions
             {
                 HttpOnly = true
             });
 
-            // Redirect to Tasks/Index
             return RedirectToAction("Index", "Tasks");
         }
     }

@@ -24,7 +24,7 @@ namespace GorevYonetimSistemi.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(User user)
+        public async Task<IActionResult> Create(UserDto user)
         {
             if (ModelState.IsValid)
             {
@@ -45,7 +45,7 @@ namespace GorevYonetimSistemi.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(User user)
+        public async Task<IActionResult> Edit(UserDto user)
         {
             if (ModelState.IsValid)
             {

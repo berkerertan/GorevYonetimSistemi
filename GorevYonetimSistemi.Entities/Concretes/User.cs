@@ -9,6 +9,17 @@ namespace GorevYonetimSistemi.Entities.Concretes
 {
     public class User : BaseEntity<Guid>
     {
+        public User()
+        {
+        }
+
+        public User(string username, string password, int? roleId)
+        {
+            Username = username;
+            Password = password;
+            RoleId = roleId;
+        }
+
         public string Username { get; set; }
         public string Password { get; set; }
         public int? RoleId { get; set; }
